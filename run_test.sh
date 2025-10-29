@@ -20,7 +20,8 @@ output_file="results_c.txt"
         fi
 
         echo "Running: $run"
-        output=$(eval "$run" 2>/dev/null)
+        #output=$(eval "$run" 2>/dev/null)
+        output=$(eval "$run")
         echo "$output"
         echo "$output" >> "$output_file"
     done

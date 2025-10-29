@@ -21,6 +21,7 @@ output_file="results_c.txt"
 
         echo "Running: $run"
         output=$(eval "$run" 2>/dev/null)
+        echo "$output"
         echo "$output" >> "$output_file"
     done
 

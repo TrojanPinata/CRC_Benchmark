@@ -1,4 +1,4 @@
 gcc CRC_Assembly_Unoptimized.asm -o crc
-./crc
+perf stat -r 5 ./crc > /dev/null
 gcc CRC_Assembly_Optimized.asm -o crc
-./crc
+perf stat -r 5 ./crc > /dev/null

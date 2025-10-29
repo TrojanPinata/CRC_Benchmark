@@ -1,40 +1,19 @@
-rustc -C opt-level=1 CRC_Rust_Unoptimized.rs -o crc
-./crc
+cargo rustc --release -- -C opt-level=1
+
 rustc -C opt-level=2 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=3 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=s CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=z CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=1 -C target-cpu=cortex-a76 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=2 -C target-cpu=cortex-a76 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=3 -C target-cpu=cortex-a76 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=s -C target-cpu=cortex-a76 CRC_Rust_Unoptimized.rs -o crc
-./crc
+
 rustc -C opt-level=z -C target-cpu=cortex-a76 CRC_Rust_Unoptimized.rs -o crc
-./crc
-rustc -C opt-level=1 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=2 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=3 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=s -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=z -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=1 -C target-cpu=cortex-a76 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=2 -C target-cpu=cortex-a76 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=3 -C target-cpu=cortex-a76 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=s -C target-cpu=cortex-a76 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc
-rustc -C opt-level=z -C target-cpu=cortex-a76 -C target-feature=+crc CRC_Rust_Optimized.rs -o crc
-./crc

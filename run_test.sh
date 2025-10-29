@@ -2,8 +2,8 @@
 
 start_time=$(date +%s)
 
-command_file = "commands_c.txt"
-output_file = "results_c.txt"
+command_file="commands_c.txt"
+output_file="results_c.txt"
 
 : > "$outputs"  # clear output file
 

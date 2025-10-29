@@ -190,3 +190,51 @@ tcc -O2 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o
 perf stat -r 5 ./crc > /dev/null
 tcc -O3 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
 perf stat -r 5 ./crc > /dev/null
+gcc -Ofast CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -march=armv8-a+crc CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+gcc -Ofast -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -march=armv8-a+crc CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+clang -Ofast -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -march=armv8-a+crc CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null
+tcc -Ofast -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+perf stat -r 5 ./crc > /dev/null

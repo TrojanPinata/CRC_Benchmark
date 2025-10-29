@@ -3,6 +3,8 @@
 #include <stdlib.h>
 #include <stdio.h>
 
+#include <arm_acle.h>
+
 #define BUFFER_SIZE (10 * 1024 * 1024)
 
 uint8_t *create_buffer(void) {

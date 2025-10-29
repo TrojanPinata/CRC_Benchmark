@@ -1,0 +1,256 @@
+gcc -O0 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O1 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O2 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O3 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O0 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O1 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O2 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O3 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O0 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O1 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O2 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O3 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O0 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O1 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O2 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O3 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+gcc -O0 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+gcc -O1 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+gcc -O2 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+gcc -O3 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+gcc -O0 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+gcc -O1 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+gcc -O2 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+gcc -O3 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+gcc -O0 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O1 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O2 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O3 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O0 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O1 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O2 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+gcc -O3 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O0 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O1 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O2 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O3 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O0 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O1 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O2 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O3 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+clang -O0 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O1 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O2 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O3 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O0 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O1 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O2 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O3 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+clang -O0 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+clang -O1 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+clang -O2 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+clang -O3 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+clang -O0 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+clang -O1 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+clang -O2 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+clang -O3 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+clang -O0 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O1 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O2 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O3 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O0 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O1 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O2 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+clang -O3 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O0 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O1 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O2 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O3 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O0 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O1 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O2 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O3 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O0 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O1 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O2 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O3 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O0 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O1 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O2 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O3 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+tcc -O0 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+tcc -O1 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+tcc -O2 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+tcc -O3 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+tcc -O0 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+tcc -O1 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+tcc -O2 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+tcc -O3 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+tcc -O0 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O1 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O2 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O3 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O0 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O1 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O2 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+tcc -O3 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O0 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O1 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O2 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O3 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O0 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O1 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O2 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O3 -mtune=cortex-a76 CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O0 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O1 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O2 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O3 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O0 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O1 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O2 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O3 -mtune=cortex-a76 -funroll-loops CRC_C_Unoptimized.c -o crc
+./crc
+armclang -O0 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+armclang -O1 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+armclang -O2 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+armclang -O3 -march=armv8-a+crc CRC_C_Optimized.c -o crc
+./crc
+armclang -O0 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+armclang -O1 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+armclang -O2 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+armclang -O3 -march=armv8-a+crc -mtune=cortex-a76 CRC_C_Optimized.c -o crc
+./crc
+armclang -O0 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O1 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O2 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O3 -march=armv8-a+crc -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O0 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O1 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O2 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc
+armclang -O3 -march=armv8-a+crc -mtune=cortex-a76 -funroll-loops CRC_C_Optimized.c -o crc
+./crc

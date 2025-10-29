@@ -1,0 +1,4 @@
+gcc CRC_Assembly_Unoptimized.asm -o crc
+./crc
+gcc CRC_Assembly_Optimized.asm -o crc
+./crc

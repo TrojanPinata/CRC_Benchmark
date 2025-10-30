@@ -1,4 +1,4 @@
 [package]
-name = "CRC_Rust_unoptimized"
+name = "CRC_Rust_Unoptimized"
 version = "0.1.0"
 edition = "2021"

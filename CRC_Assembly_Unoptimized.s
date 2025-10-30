@@ -1,99 +1,113 @@
-// ARMv8 assembly with no NEON optimization, only algorithm
-.global main
-.extern printf  // same functions as in C, better comparison
-.extern exit
-.extern malloc
-
 .section .rodata
-format:
-    .asciz "CRC32 result = 0x%08X\n"    // match what's written in C
+fmt:
+    .string "CRC = %08X\n"
 
-buffer_size:
-    .quad 10485760          // 10 * 1024 * 1024 = 10MB
+BUFFER_SIZE = 10485760       // 10 * 1024 * 1024
+POLY        = 0xEDB88320
+
+.section .bss
+    .align 3
+buffer:
+    .skip BUFFER_SIZE          // reserve buffer
 
 .section .text
-// create_buffer()
-create_buffer:              // return pointer in x0
-    ldr     x0, =buffer_size
-    ldr     x0, [x0]        // x0 = buffer_size
-    bl      malloc          // malloc 10MB
-    mov     x19, x0         // put pointer to buffer in x19
-    mov     x20, #0         // set loop counter
+.global main
+.extern malloc
+.extern printf
 
-fill_loop:
-    ldr     x1, =buffer_size
-    ldr     x1, [x1]        // x1 = buffer_size
-    cmp     x20, x1         // is counter == buffer_size
-    bge     fill_loop_comp
+// ------------------------------
+// uint8_t *create_buffer(void)
+// ------------------------------
+create_buffer:
+    stp     x29, x30, [sp, -16]!   // prologue
+    mov     x0, #BUFFER_SIZE       // malloc size
+    bl      malloc                 // call malloc
+    mov     x1, x0                 // x1 = buffer pointer
+    mov     x2, #0                 // i = 0
 
-    // (i * 29 + 13)
-    mov     x2, #29
-    mul     x3, x20, x2
+create_loop:
+    cmp     x2, #BUFFER_SIZE
+    b.ge    create_done
+
+    // buf[i] = (i * 29 + 13) & 0xFF
+    mov     x3, x2
+    mov     x4, #29
+    mul     x3, x3, x4
     add     x3, x3, #13
-    and     x3, x3, #0xFF   // 8 bit mask 
-    strb    w3, [x19, x20]  // store in array at location x20
+    and     w3, w3, #0xFF
+    strb    w3, [x1, x2]          // store byte
+    add     x2, x2, #1
+    b       create_loop
 
-    add     x20, x20, #1    // increment counter
-    b       fill_loop
-
-fill_loop_comp:
-    mov     x0, x19         // return pointer in x0
+create_done:
+    mov     x0, x1                 // return buffer pointer
+    ldp     x29, x30, [sp], 16
     ret
 
-
-// run_crc()
+// ------------------------------
+// uint32_t run_crc(uint8_t *data, size_t len)
+// ------------------------------
 run_crc:
-    mov     w2, #0
-    mvn     w2, w2          // set initial crc value
-    cbz     x1, crc_done    // if x1 (remaining length of data) == 0, go to done, otherwise start byte loop
+    stp     x29, x30, [sp, -16]!
+    mov     x29, sp
 
-crc_byte_loop:
-    ldrb    w3, [x0], #1    // load byte and increment pointer
-    eor     w2, w2, w3      // crc ^= data[i]
-    mov     w4, #8          // set counter to 8, then start bit loop
+    mov     x2, #0xFFFFFFFF        // crc = 0xFFFFFFFF
+    mov     x3, #0                 // i = 0
 
-crc_bit_loop:
-    and     w5, w2, #1      // crc & 1 (result in w5)
-    cmp     w5, #0
-    beq     xor_skip    // if == 0 then go to else
-    movz    w6, #0x8320             // lower 16 bits (bits [15:0])
-    movk    w6, #0xEDB8, lsl #16    // upper 16 bits (bits [31:16])
-    lsr     w2, w2, #1      // shift crc by 1
-    eor     w2, w2, w6      // xor crc with polynomial
-    b       bit_loop_comp   // handle loop repetition logic
+crc_outer_loop:
+    cmp     x3, x1                 // i < len?
+    b.ge    crc_done
 
-.align 2
-xor_skip:
-    lsr     w2, w2, #1      // shift right 1 bit
+    ldrb    w4, [x0, x3]           // data[i]
+    eor     w2, w2, w4             // crc ^= data[i]
 
-bit_loop_comp:
-    subs    w4, w4, #1      // decrement bit counter by 1
-    bne     crc_bit_loop    // repeat loop if w4 != 0
-    subs    x1, x1, #1      // decrement byte counter by 1
-    bne crc_byte_loop       // repeat byte loop if x1 != 0 (no data left), otherwise go to done
+    mov     x5, #0                 // j = 0
+
+crc_inner_loop:
+    cmp     x5, #8
+    b.ge    crc_inner_done
+
+    and     w6, w2, #1             // check lowest bit
+    cbz     w6, crc_shift_only
+
+    // crc = (crc >> 1) ^ POLY
+    lsr     w2, w2, #1
+    mov     w6, #POLY
+    eor     w2, w2, w6
+    b       crc_inner_next
+
+crc_shift_only:
+    lsr     w2, w2, #1
+
+crc_inner_next:
+    add     x5, x5, #1
+    b       crc_inner_loop
+
+crc_inner_done:
+    add     x3, x3, #1
+    b       crc_outer_loop
 
 crc_done:
-    mvn     w0, w2          // invert bits in crc
+    mvn     w0, w2                 // return ~crc
+    ldp     x29, x30, [sp], 16
     ret
 
-
-// main()
+// ------------------------------
+// int main(void)
+// ------------------------------
 main:
-    // generate buffer
-    bl      create_buffer
-    mov     x19, x0         // save buffer pointer
-    ldr     x1, =buffer_size
-    ldr     x1, [x1]
+    stp     x29, x30, [sp, -16]!
+    mov     x29, sp
 
-    // run crc  (place in w0)
-    mov     x0, x19         // get length buffer length for argument
-    bl      run_crc         // run crc
-    mov     w21, w0         // store result in w21 (later moved to w1 for call)
-
-    // display with printf
-    ldr     x0, =format
-    mov     w1, w21
+    bl      create_buffer          // x0 = buffer pointer
+    mov     x1, x0                 // save buffer pointer
+    mov     x0, x1                 // arg0 = buffer
+    mov     x1, #BUFFER_SIZE       // arg1 = length
+    bl      run_crc                // call run_crc
+    mov     w1, w0                 // crc
+    ldr     x0, =fmt
     bl      printf
 
-    mov     w0, #0           // exit(0)
-    bl      exit
+    ldp     x29, x30, [sp], 16
+    mov     w0, #0
+    ret

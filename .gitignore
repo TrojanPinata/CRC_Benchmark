@@ -55,3 +55,5 @@ dkms.conf
 *.dwo
 
 .vscode
+CRC_Rust_Unoptimized/target
+CRC_Rust_Optimized/target

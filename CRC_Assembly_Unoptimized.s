@@ -72,7 +72,7 @@ crc_inner_loop:
 
     // crc = (crc >> 1) ^ POLY
     lsr     w2, w2, #1
-    mov     w6, #POLY
+    ldr     w6, =0xEDB88320
     eor     w2, w2, w6
     b       crc_inner_next
 

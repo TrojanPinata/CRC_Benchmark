@@ -1,4 +1,4 @@
-// ARMv8 assembly with NEON optimization (crc32b)
+// ARMv8 assembly with no NEON optimization, only algorithm
 .global main
 .extern printf  // same functions as in C, better comparison
 .extern exit
@@ -43,17 +43,34 @@ fill_loop_comp:
 
 // run_crc()
 run_crc:
-    mov     w2, #0xFFFFFFFF
-    cbz     x1, crc_done
+    mov     w2, #0
+    mvn     w2, w2          // set initial crc value
+    cbz     x1, crc_done    // if x1 (remaining length of data) == 0, go to done, otherwise start byte loop
 
-crc_loop:
-    ldrb    w3, [x0], #1    // load and increment   
-    crc32b  w2, w2, w3      // run crc
-    subs    x1, x1, #1      // decrement length
-    b.ne    crc_loop        // repeat until complete
+crc_byte_loop:
+    ldrb    w3, [x0], #1    // load byte and increment pointer
+    eor     w2, w2, w3      // crc ^= data[i]
+    mov     w4, #8          // set counter to 8, then start bit loop
+
+crc_bit_loop:
+    and     w5, w2, #1      // crc & 1 (result in w5)
+    cbz     w5, else        // if == 0 then go to else
+    ldr     w6, =0xEDB88320 // put polynomial in register
+    lsr     w2, w2, #1      // shift crc by 1
+    eor     w2, w2, w6      // xor crc with polynomial
+    b       bit_loop_comp   // handle loop repetition logic
+
+else:
+    lsr     w2, w2, #1      // shift right 1 bit
+
+bit_loop_comp:
+    subs    w4, w4, #1      // decrement bit counter by 1
+    bne     crc_bit_loop    // repeat loop if w4 != 0
+    subs    x1, x1, #1      // decrement byte counter by 1
+    bne crc_byte_loop       // repeat byte loop if x1 != 0 (no data left), otherwise go to done
 
 crc_done:
-    mvn     w0, w2          // invert result
+    mvn     w0, w2          // invert bits in crc
     ret
 
 

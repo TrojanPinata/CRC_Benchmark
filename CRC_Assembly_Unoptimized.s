@@ -62,6 +62,7 @@ crc_bit_loop:
     eor     w2, w2, w6      // xor crc with polynomial
     b       bit_loop_comp   // handle loop repetition logic
 
+.align 2
 xor_skip:
     lsr     w2, w2, #1      // shift right 1 bit
 

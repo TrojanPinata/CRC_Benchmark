@@ -54,14 +54,14 @@ crc_byte_loop:
 
 crc_bit_loop:
     and     w5, w2, #1      // crc & 1 (result in w5)
-    cbz     w5, else        // if == 0 then go to else
+    cbz     w5, elseb       // if == 0 then go to else
     movz    w6, #0x8320             // lower 16 bits (bits [15:0])
     movk    w6, #0xEDB8, lsl #16    // upper 16 bits (bits [31:16])
     lsr     w2, w2, #1      // shift crc by 1
     eor     w2, w2, w6      // xor crc with polynomial
     b       bit_loop_comp   // handle loop repetition logic
 
-else:
+elseb:
     lsr     w2, w2, #1      // shift right 1 bit
 
 bit_loop_comp:

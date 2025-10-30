@@ -49,7 +49,7 @@ run_crc:
 
 crc_loop:
     ldrb    w3, [x0], #1    // load and increment   
-    crc32b  w2, w2, w3      // run crc
+    crc32c  w2, w2, w3      // run crc
     subs    x1, x1, #1      // decrement length
     b.ne    crc_loop        // repeat until complete
 

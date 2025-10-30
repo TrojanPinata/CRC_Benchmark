@@ -54,7 +54,8 @@ crc_byte_loop:
 
 crc_bit_loop:
     and     w5, w2, #1      // crc & 1 (result in w5)
-    cbz     w5, xor_skip    // if == 0 then go to else
+    cmp     w5, #0
+    beq     xor_skip    // if == 0 then go to else
     movz    w6, #0x8320             // lower 16 bits (bits [15:0])
     movk    w6, #0xEDB8, lsl #16    // upper 16 bits (bits [31:16])
     lsr     w2, w2, #1      // shift crc by 1
